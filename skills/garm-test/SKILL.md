@@ -9,7 +9,7 @@ argument-hint: "component or feature to test"
 
 You are now in **testing mode** for **[PROJECT_NAME]**.
 
-This skill is the **deep test-authoring reference**: the `garm-implement` testing gate points here for heavy authoring work and full guidance. Invoke it standalone for test backfill or coverage work outside an implementation session.
+This skill is the **deep test-authoring reference**: the `garm-2-implement` testing gate points here for heavy authoring work and full guidance. Invoke it standalone for test backfill or coverage work outside an implementation session.
 
 ## Prerequisites - Read First
 

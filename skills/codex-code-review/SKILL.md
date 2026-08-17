@@ -48,7 +48,7 @@ Codex uses `git status -s` / `git diff HEAD` in read-only sandbox. If those fail
 ## After Convergence
 
 1. Promote `state/<key>.review.txt` to `docs/3-code-review/CR_wa_vx.y.z.md` using `.claude/skills/garm-review/cr-template.md`.
-2. Continue with `garm-release`.
+2. Continue with `garm-3-release`.
 
 ## Notes
 
@@ -67,5 +67,5 @@ turn 1: start.sh -> REQUEST_CHANGES (Critical: A, Major: B C)
          address A B C
 turn 2: resume.sh -> REQUEST_CHANGES (A B addressed, Minor: C partial, Suggestion: D)
          address C, optionally D
-turn 3: resume.sh -> APPROVED -> promote, continue with garm-release
+turn 3: resume.sh -> APPROVED -> promote, continue with garm-3-release
 ```

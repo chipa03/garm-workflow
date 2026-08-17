@@ -39,7 +39,7 @@ If `git diff HEAD` returns nothing (already committed), use `git diff @{u}...HEA
 Walk every section of `checklist.md` against the diff. Cite `file:line` for every finding.
 Tag with severity from the same file. Prefer actionable one-line fixes over multi-paragraph critiques.
 
-Lint, type-check, and affected tests are run by the requester (garm-implement testing gate); the additional-context block below typically carries the summary. If it shows failures, or the diff adds new logic with no corresponding tests and no rationale, return `REQUEST_CHANGES`. Do not review test code quality or hunt for coverage gaps yourself.
+Lint, type-check, and affected tests are run by the requester (garm-2-implement testing gate); the additional-context block below typically carries the summary. If it shows failures, or the diff adds new logic with no corresponding tests and no rationale, return `REQUEST_CHANGES`. Do not review test code quality or hunt for coverage gaps yourself.
 
 End with exactly one tag on its own line:
   APPROVED

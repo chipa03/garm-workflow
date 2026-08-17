@@ -1,5 +1,5 @@
 ---
-name: garm-implement
+name: garm-2-implement
 description: Implement a feature following GARM plan
 argument-hint: "plan file or feature to implement"
 ---
@@ -22,7 +22,7 @@ Implement: $ARGUMENTS
 
 ## Step 0: Create a Branch (Pre-Implementation)
 
-**Always** create a dedicated branch before implementing — no need to ask. `garm-release` merges it back into the main branch with fast-forward, keeping a single clean linear history.
+**Always** create a dedicated branch before implementing — no need to ask. `garm-3-release` merges it back into the main branch with fast-forward, keeping a single clean linear history.
 
 ```bash
 git checkout -b feat/[short-description]   # or fix/[short-description]
@@ -101,8 +101,8 @@ After implementation, before the Codex review loop. Any failure here blocks the 
 
 ```bash
 # [ADAPT_TO_PROJECT: Replace with actual lint/type-check/build commands during Init]
-[LINT_COMMAND] 2>&1 | tee /tmp/_garm-implement-lint.txt
-[TYPECHECK_COMMAND] 2>&1 | tee /tmp/_garm-implement-typecheck.txt
+[LINT_COMMAND] 2>&1 | tee /tmp/_garm-2-implement-lint.txt
+[TYPECHECK_COMMAND] 2>&1 | tee /tmp/_garm-2-implement-typecheck.txt
 ```
 
 ### 2. Run affected unit tests
@@ -187,10 +187,10 @@ bash .claude/skills/codex-plan-review/scripts/resume.sh \
     <plan-path> "Today's date is YYYY-MM-DD"
 ```
 
-Outputs `PROMOTION_READY` sentinel. `<x.y.z>` Version placeholder left unfilled (resolved during `garm-release`).
+Outputs `PROMOTION_READY` sentinel. `<x.y.z>` Version placeholder left unfilled (resolved during `garm-3-release`).
 
 Edge case:
-- **User skipped Codex**: no synthesis. The CR is written manually during `garm-release`: "Code review skipped — trivial change."
+- **User skipped Codex**: no synthesis. The CR is written manually during `garm-3-release`: "Code review skipped — trivial change."
 
 ### Operating Notes
 
@@ -207,6 +207,6 @@ After Codex converges (or is skipped):
   - **Question**: "Is the implementation complete?"
   - **Options**: "Yes, everything is complete" (proceed to release), "No, there are remaining items" (continue working)
 
-**If "Yes"**: proceed directly into the release — read `.claude/skills/garm-release/SKILL.md` and follow it in this session, passing the same plan path (or feature label). The release skill owns everything from version bump to the fast-forward merge and push.
+**If "Yes"**: proceed directly into the release — read `.claude/skills/garm-3-release/SKILL.md` and follow it in this session, passing the same plan path (or feature label). The release skill owns everything from version bump to the fast-forward merge and push.
 
 **If "No"**: continue working, then repeat the sequence: testing gate → Codex review → this question.

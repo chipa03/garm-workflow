@@ -1,5 +1,5 @@
 ---
-name: garm-release
+name: garm-3-release
 description: Release a completed implementation - version, code review promotion, changelogs, docs, commit, tag, ff-merge, push
 argument-hint: "plan file or feature label"
 ---
@@ -10,7 +10,7 @@ You are now in **release mode** for **[PROJECT_NAME]**.
 
 Release: $ARGUMENTS
 
-This skill runs after `garm-implement` has converged (implementation done, testing gate green, Codex code review `APPROVED` or explicitly skipped). It is normally chained from garm-implement in the same session, but can be invoked standalone in a fresh session.
+This skill runs after `garm-2-implement` has converged (implementation done, testing gate green, Codex code review `APPROVED` or explicitly skipped). It is normally chained from garm-2-implement in the same session, but can be invoked standalone in a fresh session.
 
 ---
 
@@ -21,9 +21,9 @@ This skill runs after `garm-implement` has converged (implementation done, testi
 - Codex code review converged (`APPROVED`), or explicitly skipped by the user.
 - Lint and type-check/build green.
 
-### Standalone verification (fresh session, not chained from garm-implement)
+### Standalone verification (fresh session, not chained from garm-2-implement)
 
-If this skill was NOT chained from a garm-implement session in the current conversation, verify before any release step:
+If this skill was NOT chained from a garm-2-implement session in the current conversation, verify before any release step:
 
 ```bash
 # [ADAPT_TO_PROJECT: Replace with actual lint/type-check/test commands during Init]
@@ -34,7 +34,7 @@ If this skill was NOT chained from a garm-implement session in the current conve
 
 All must be green. Also verify the Codex state file exists for the given plan path/label (see Step 3 below); if absent, treat as the skipped-Codex fallback (manual CR) and say so explicitly in the CR.
 
-Any failure blocks the release — fix or return to `garm-implement` first.
+Any failure blocks the release — fix or return to `garm-2-implement` first.
 
 ---
 

@@ -469,9 +469,9 @@ After user validation, update the other GARM skill files based on the **actual c
 
 ### Skills to Update:
 
-1. **`garm-plan`** - Technical considerations, guidance sections, documentation impact candidates
-2. **`garm-implement`** - Testing gate commands
-3. **`garm-release`** - Version file, week offset, tutorials
+1. **`garm-1-plan`** - Technical considerations, guidance sections, documentation impact candidates
+2. **`garm-2-implement`** - Testing gate commands
+3. **`garm-3-release`** - Version file, week offset, tutorials
 4. **`garm-review`** - `checklist.md` and `cr-template.md` adapted to actual architecture
 5. **`garm-test`** - Test commands, structure, priorities
 
@@ -483,7 +483,7 @@ After user validation, update the other GARM skill files based on the **actual c
 
 ---
 
-### 6.2 Update `garm-plan`
+### 6.2 Update `garm-1-plan`
 
 **A. Technical Considerations Section**
 
@@ -626,9 +626,9 @@ Replace the `[ADAPT_TO_PROJECT]` marker inside the plan template's **Documentati
 - Reference `.md` specs living next to the code
 - Contributor guides (`CLAUDE.md`, `AGENTS.md`, `CONTRIBUTING.md`)
 
-This list is what makes the garm-release Documentation Sync step effective — a doc missing here tends to drift silently.
+This list is what makes the garm-3-release Documentation Sync step effective — a doc missing here tends to drift silently.
 
-Also resolve the `[ADAPT_TO_PROJECT]` marker in the **Prerequisites** list at the top of `garm-plan`: if the project has living docs a plan must respect beyond MIMIR.md (e.g. an operations manual), list them with the condition under which they must be read; otherwise delete that line.
+Also resolve the `[ADAPT_TO_PROJECT]` marker in the **Prerequisites** list at the top of `garm-1-plan`: if the project has living docs a plan must respect beyond MIMIR.md (e.g. an operations manual), list them with the condition under which they must be read; otherwise delete that line.
 
 **D. Custom Plan Sections**
 
@@ -643,9 +643,9 @@ If the user selects "Yes" or provides custom input, add the specified sections t
 
 ---
 
-### 6.3 Update `garm-implement` and `garm-release`
+### 6.3 Update `garm-2-implement` and `garm-3-release`
 
-The testing gate in `garm-implement` and the standalone-verification block in `garm-release` share the same command placeholders. The release ceremony customizations (version, week, tutorials) live in `garm-release`:
+The testing gate in `garm-2-implement` and the standalone-verification block in `garm-3-release` share the same command placeholders. The release ceremony customizations (version, week, tutorials) live in `garm-3-release`:
 
 **A. Version File Location**
 
@@ -659,7 +659,7 @@ Update Step 2 to reference the actual version file:
 
 **B. Week Anchor**
 
-The week Init is run becomes **Week 1** of the project. Capture the anchor date (Monday of the current week) and update the week formula in `garm-release`.
+The week Init is run becomes **Week 1** of the project. Capture the anchor date (Monday of the current week) and update the week formula in `garm-3-release`.
 
 Run this to get the anchor date:
 
@@ -667,11 +667,11 @@ Run this to get the anchor date:
 python3 -c "from datetime import date, timedelta; t = date.today(); print(t - timedelta(days=t.weekday()))"
 ```
 
-Then replace the `[WEEK_ANCHOR_DATE]` placeholder in `garm-release` Step 1 with the actual date (ISO format, `YYYY-MM-DD` — the formula parses it with `date.fromisoformat`). The formula counts elapsed weeks from that fixed date, so it works across year boundaries indefinitely, and both this command and the formula use Python instead of `date -d`, so they run identically on GNU/Linux and macOS (BSD `date`). If `python3` is not on PATH — e.g. Git Bash on Windows — use `python` instead.
+Then replace the `[WEEK_ANCHOR_DATE]` placeholder in `garm-3-release` Step 1 with the actual date (ISO format, `YYYY-MM-DD` — the formula parses it with `date.fromisoformat`). The formula counts elapsed weeks from that fixed date, so it works across year boundaries indefinitely, and both this command and the formula use Python instead of `date -d`, so they run identically on GNU/Linux and macOS (BSD `date`). If `python3` is not on PATH — e.g. Git Bash on Windows — use `python` instead.
 
 **C. Main Branch**
 
-Replace the `[MAIN_BRANCH]` placeholder in `garm-release` (the Documentation Sync diff command and the fast-forward merge step) with the repo's default branch name. Detect it with:
+Replace the `[MAIN_BRANCH]` placeholder in `garm-3-release` (the Documentation Sync diff command and the fast-forward merge step) with the repo's default branch name. Detect it with:
 
 ```bash
 basename "$(git symbolic-ref refs/remotes/origin/HEAD 2>/dev/null || git branch --show-current)"
@@ -690,7 +690,7 @@ basename "$(git symbolic-ref refs/remotes/origin/HEAD 2>/dev/null || git branch 
 
 **If "No"**:
 
-- Remove the `[TUTORIAL_STEP]` block entirely from `garm-release`
+- Remove the `[TUTORIAL_STEP]` block entirely from `garm-3-release`
 - Do NOT create the `docs/5-tuto/` folder
 - No renumbering needed — the existing step numbers are already correct for this case
 
@@ -708,7 +708,7 @@ basename "$(git symbolic-ref refs/remotes/origin/HEAD 2>/dev/null || git branch 
   **Question 3** (header: "Style"): "What tutorial style do you prefer?"
   - **Options**: "Concise" (key points, minimal explanation), "Balanced" (explanations with examples), "Verbose" (detailed explanations, multiple examples, diagrams)
 
-Then update the `[TUTORIAL_STEP]` block in `garm-release` with the user's context:
+Then update the `[TUTORIAL_STEP]` block in `garm-3-release` with the user's context:
 
 ```markdown
 ### Step 8: Tutorial
@@ -737,7 +737,7 @@ Also update the cross-reference inside Documentation Sync — "included in the r
 
 **E. Codex Review Test Commands**
 
-Replace the `[LINT_COMMAND]`, `[TYPECHECK_COMMAND]`, and `[TEST_COMMAND]` placeholders in the garm-implement Testing Gate AND the garm-release standalone-verification block with the **actual commands** for this project (from MIMIR.md or discovered during exploration). For example:
+Replace the `[LINT_COMMAND]`, `[TYPECHECK_COMMAND]`, and `[TEST_COMMAND]` placeholders in the garm-2-implement Testing Gate AND the garm-3-release standalone-verification block with the **actual commands** for this project (from MIMIR.md or discovered during exploration). For example:
 
 - Python: `uv run ruff check .`, `uv run mypy`, `uv run pytest -q`
 - Node.js: `npm run lint`, `npx tsc --noEmit`, `npm test`
@@ -1038,17 +1038,17 @@ Update: Technology Stack, and any affected architectural sections
 - [ ] **User reviewed and approved MIMIR.md** (Phase 5)
 - [ ] **GARM skills updated** (Phase 6):
   - [ ] `[PROJECT_NAME]` placeholder replaced in all skills
-  - [ ] `garm-plan`: `[ADAPT_TO_PROJECT]` markers replaced with actual technical considerations
-  - [ ] `garm-plan`: Guidance sections replaced with project-specific patterns
-  - [ ] `garm-plan`: Documentation Impact candidates replaced with the project's actual living docs
-  - [ ] `garm-plan`: Prerequisites `[ADAPT_TO_PROJECT]` line resolved (project docs listed, or line deleted)
-  - [ ] `garm-plan`: Custom plan sections added (if user requested)
-  - [ ] `garm-implement`: Testing gate commands (`[LINT_COMMAND]`, `[TYPECHECK_COMMAND]`, `[TEST_COMMAND]`) replaced with actual commands
-  - [ ] `garm-release`: `[VERSION_FILE]` placeholder replaced
-  - [ ] `garm-release`: `[WEEK_ANCHOR_DATE]` placeholder replaced
-  - [ ] `garm-release`: `[MAIN_BRANCH]` placeholder replaced
-  - [ ] `garm-release`: Standalone-verification commands replaced with actual commands
-  - [ ] `garm-release`: Tutorial preference configured (if enabled: 5-tuto/ folder created + user context; if disabled: `[TUTORIAL_STEP]` block removed)
+  - [ ] `garm-1-plan`: `[ADAPT_TO_PROJECT]` markers replaced with actual technical considerations
+  - [ ] `garm-1-plan`: Guidance sections replaced with project-specific patterns
+  - [ ] `garm-1-plan`: Documentation Impact candidates replaced with the project's actual living docs
+  - [ ] `garm-1-plan`: Prerequisites `[ADAPT_TO_PROJECT]` line resolved (project docs listed, or line deleted)
+  - [ ] `garm-1-plan`: Custom plan sections added (if user requested)
+  - [ ] `garm-2-implement`: Testing gate commands (`[LINT_COMMAND]`, `[TYPECHECK_COMMAND]`, `[TEST_COMMAND]`) replaced with actual commands
+  - [ ] `garm-3-release`: `[VERSION_FILE]` placeholder replaced
+  - [ ] `garm-3-release`: `[WEEK_ANCHOR_DATE]` placeholder replaced
+  - [ ] `garm-3-release`: `[MAIN_BRANCH]` placeholder replaced
+  - [ ] `garm-3-release`: Standalone-verification commands replaced with actual commands
+  - [ ] `garm-3-release`: Tutorial preference configured (if enabled: 5-tuto/ folder created + user context; if disabled: `[TUTORIAL_STEP]` block removed)
   - [ ] `garm-review/checklist.md`: `[ADAPT_TO_PROJECT]` markers replaced with project-specific checklist sections
   - [ ] `garm-review/cr-template.md`: Checklist section names updated to match adapted `checklist.md`
   - [ ] `garm-test`: `[TEST_COMMAND_*]` placeholders replaced with actual commands

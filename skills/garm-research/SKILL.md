@@ -270,6 +270,6 @@ Then **use the `AskUserQuestion` tool**:
 If research concludes that implementation should proceed, **use the `AskUserQuestion` tool**:
 
 - **Question**: "Based on this research, would you like me to create a GARM plan for implementation?"
-- **Options**: "Yes, create a plan" (use findings to inform `garm-plan`), "Not yet" (I'll decide later)
+- **Options**: "Yes, create a plan" (use findings to inform `garm-1-plan`), "Not yet" (I'll decide later)
 
-If yes, use findings to inform `garm-plan`.
+If yes, use findings to inform `garm-1-plan`.

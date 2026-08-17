@@ -1,5 +1,5 @@
 ---
-name: garm-plan
+name: garm-1-plan
 description: Plan a new feature following project standards
 argument-hint: "describe the feature you want to build"
 ---
@@ -118,11 +118,11 @@ Depending on the feature (major, minor, patch), propose a new version using SemV
 
 ## Test Impact
 
-[2-5 bullets: which existing tests the change affects, what new logic will need tests, whether an integration/E2E check applies. No test code — the garm-implement testing gate consumes this section.]
+[2-5 bullets: which existing tests the change affects, what new logic will need tests, whether an integration/E2E check applies. No test code — the garm-2-implement testing gate consumes this section.]
 
 ## Documentation Impact
 
-[Mandatory. List every document OUTSIDE the GARM docs that this feature will leave outdated, with one line each on what becomes stale. If none are affected, write "None". The garm-release Documentation Sync step consumes this section before the release commit. Always evaluate the candidates below.]
+[Mandatory. List every document OUTSIDE the GARM docs that this feature will leave outdated, with one line each on what becomes stale. If none are affected, write "None". The garm-3-release Documentation Sync step consumes this section before the release commit. Always evaluate the candidates below.]
 
 [ADAPT_TO_PROJECT: During Init, replace this block with the project's actual living docs — every non-GARM document that code changes can leave stale. Typical candidates: `README.md` (quick start, repo structure tree, command reference), module/subdirectory READMEs, operations or user manuals, reference `.md` specs living next to the code, contributor guides (`CLAUDE.md`, `AGENTS.md`, `CONTRIBUTING.md`). One bullet per doc with when it's affected.]
 
@@ -140,7 +140,7 @@ Depending on the feature (major, minor, patch), propose a new version using SemV
 
 **Note**: For simple plans, a single phase is sufficient. Split into multiple phases only for complex features requiring sequential implementation.
 
-**Note**: Do NOT write test code during planning — the Test Impact section above only names what the garm-implement testing gate will run and author.
+**Note**: Do NOT write test code during planning — the Test Impact section above only names what the garm-2-implement testing gate will run and author.
 ```
 
 ## Quality Standards
@@ -190,7 +190,7 @@ Then **one `AskUserQuestion`** — the single decision point of this skill:
 
 - **Question**: "Review the plan at `docs/1-plans/F_x.y.z_feature-name.plan.md`. How to proceed?"
 - **Options**:
-  - "Approved — implement now" → continue straight into `garm-implement` with this plan
+  - "Approved — implement now" → continue straight into `garm-2-implement` with this plan
   - "Approved — stop here" → plan saved, no implementation
   - "Rework" → the user provides feedback as text
 
@@ -218,7 +218,7 @@ But NOT:
 - Actual code implementations
 - Detailed algorithm code
 
-Keep it architectural and descriptive. Code comes in the `garm-implement` phase.
+Keep it architectural and descriptive. Code comes in the `garm-2-implement` phase.
 
 ## [ADAPT_TO_PROJECT: Guidance Sections]
 

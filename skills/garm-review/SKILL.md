@@ -9,7 +9,7 @@ argument-hint: "version or feature to review"
 
 You are now in **code review mode** for **[PROJECT_NAME]**.
 
-This is the **manual fallback/audit path**: normal reviews happen via the Codex loop inside `garm-implement`. Use this skill to audit a past version, review unplanned work, or replace the Codex loop when it is unavailable.
+This is the **manual fallback/audit path**: normal reviews happen via the Codex loop inside `garm-2-implement`. Use this skill to audit a past version, review unplanned work, or replace the Codex loop when it is unavailable.
 
 Review: $ARGUMENTS
 

@@ -1,6 +1,6 @@
 # GARM Workflow
 
-![Version](https://img.shields.io/badge/version-1.0.0-blue) ![Works with](https://img.shields.io/badge/Works_with-grey) [![Claude Code](https://img.shields.io/badge/Claude_Code-E5582B)](https://docs.anthropic.com/en/docs/claude-code) [![Codex CLI](https://img.shields.io/badge/Codex_CLI-10A37F)](https://developers.openai.com/codex/cli/) [![OpenCode](https://img.shields.io/badge/OpenCode-1a3a5c)](https://github.com/sst/opencode) [![Mistral Vibe](https://img.shields.io/badge/Mistral_Vibe-F7D046)](https://github.com/mistralai/mistral-vibe)
+![Version](https://img.shields.io/badge/version-1.1.0-blue) ![Works with](https://img.shields.io/badge/Works_with-grey) [![Claude Code](https://img.shields.io/badge/Claude_Code-E5582B)](https://docs.anthropic.com/en/docs/claude-code) [![Codex CLI](https://img.shields.io/badge/Codex_CLI-10A37F)](https://developers.openai.com/codex/cli/) [![OpenCode](https://img.shields.io/badge/OpenCode-1a3a5c)](https://github.com/sst/opencode)
 
 ## What is GARM?
 
@@ -24,9 +24,9 @@ Even the "simple" ones come with:
 
 | That's it           | Just these                                             |
 | ------------------- | ------------------------------------------------------ |
-| `/garm-plan`      | Think before you code         |
-| `/garm-implement` | Implement, test & review |
-| `/garm-release`   | Version, changelogs, docs, commit, tag, merge, push    |
+| `/garm-1-plan`      | Think before you code         |
+| `/garm-2-implement` | Implement, test & review |
+| `/garm-3-release`   | Version, changelogs, docs, commit, tag, merge, push    |
 
 3 core skills. 1 architecture file. 0 PhD required.
 
@@ -41,11 +41,7 @@ It was kept stupid simple because **the goal is to ship features, not to master 
 3. Follow the interactive prompts
 4. Review and approve the generated MIMIR.md
 
-### Additional For Mistral users (if they exist)
-
-Also copy `AskUserQuestion/` to your agent `/skills/`, it provides the `AskUserQuestion` hook that GARM workflow rely on.  
-
-Et voila ! Start using the skills like `/garm-plan auth for this webapp`, `/garm-implement @auth-plan.md`, etc.
+Et voila ! Start using the skills like `/garm-1-plan auth for this webapp`, `/garm-2-implement @auth-plan.md`, etc.
 
 ## The Heart of GARM: MIMIR.md
 
@@ -111,14 +107,6 @@ A grounded second opinion on **anything**. garm-research uses it to brainstorm f
 
 The Review and Test phases, reborn as on-demand support skills.
 
-### `/garm-upgrade`
-
-Upgrades an existing project's GARM skills to a newer version without losing project customizations. Copy the new skills to `new-GARM/`, run the skill, done.
-
-### `/garm-hotfix`
-
-Streamlined workflow for production emergencies. Bypasses full GARM for genuine crises (or lazy debugging).
-
 ### `/garm-research`
 
 Exploratory investigation with defined compute level. For feasibility studies and technology evaluation. Produces documented findings, not production code.
@@ -126,6 +114,16 @@ Exploratory investigation with defined compute level. For feasibility studies an
 ### `/garm-compact`
 
 Run this skill to compact MIMIR.md size while preserving relevance, accuracy, and coverage through summarization and restructuring. Token calculator script included.
+
+## Temporarily Withheld
+
+To keep the initial surface small while the team onboards, three pieces ship later rather than now:
+
+- **`/garm-hotfix`** — emergency bypass workflow. Until it returns, treat urgent fixes as normal features: `/garm-1-plan` → `/garm-2-implement` → `/garm-3-release`.
+- **`/garm-upgrade`** — merges a newer GARM release into a project's customized skills. Needed only when upgrading an existing install.
+- **`AskUserQuestion/`** — an emulation shim for agents without a native `AskUserQuestion` tool. Claude Code has one natively, so nothing is lost there; agents that lack it (e.g. Mistral Vibe) are unsupported for now.
+
+All three are recoverable from git history. See `MIGRATION.md` before reintroducing `/garm-upgrade`.
 
 ## Multi-Agent: Using Different LLMs at Different Steps
 
@@ -137,10 +135,10 @@ Fable writes the plan, 5.6 Sol reviews it, Luna implements, back to Fable who re
 
 ```mermaid
 flowchart TD
-    A["<b>/garm-plan</b><br/>Discovery and plan draft"] --> B{"ChatGPT Sol<br/>plan review"}
+    A["<b>/garm-1-plan</b><br/>Discovery and plan draft"] --> B{"ChatGPT Sol<br/>plan review"}
     B -->|"REQUEST_CHANGES"| Bf["Fable fixes the plan"]
     Bf -->|"re-review"| B
-    B -->|"APPROVED"| D["<b>/garm-implement</b><br/>Branch + split<br/>to-dos into batches"]
+    B -->|"APPROVED"| D["<b>/garm-2-implement</b><br/>Branch + split<br/>to-dos into batches"]
     Bf ~~~ D
     D --> E["ChatGPT Luna<br/>implements a batch"]
     E --> F["Fable reviews the delta,<br/>fixes directly"]
@@ -149,7 +147,7 @@ flowchart TD
     G --> H{"ChatGPT Sol<br/>full code review"}
     H -->|"REQUEST_CHANGES"| Hf["Fable fixes + re-tests"]
     Hf -->|"re-review"| H
-    H -->|"APPROVED"| K["<b>/garm-release</b><br/>Version bump · changelog<br/>docs/MIMIR update · docs sync<br/>commit · tag · ff-merge · push"]
+    H -->|"APPROVED"| K["<b>/garm-3-release</b><br/>Version bump · changelog<br/>docs/MIMIR update · docs sync<br/>commit · tag · ff-merge · push"]
     Hf ~~~ K
 ```
 

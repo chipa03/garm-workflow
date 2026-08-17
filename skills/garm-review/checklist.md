@@ -101,6 +101,6 @@ Minimum for approval:
 - [ ] All functional requirements implemented
 - [ ] No critical or major issues remaining
 - [ ] Build/compilation successful
-- [ ] Affected unit tests pass (per the garm-implement testing gate)
+- [ ] Affected unit tests pass (per the garm-2-implement testing gate)
 - [ ] New logic has test coverage (or a coverage-debt ledger entry per the hard-to-cover policy)
 - [ ] Documentation updated per project standards

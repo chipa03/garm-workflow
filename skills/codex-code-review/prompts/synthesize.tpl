@@ -9,7 +9,7 @@ Read `.claude/skills/garm-review/cr-template.md` and produce output conforming t
 Fill-in guide:
 - **Title**: feature/change name from `{{TARGET}}`
 - **Review Date**: today's date (YYYY-MM-DD)
-- **Version**: leave as `<x.y.z>` (requester fills from garm-implement Step 2)
+- **Version**: leave as `<x.y.z>` (requester fills from garm-2-implement Step 2)
 - **Files Reviewed**: from `git diff --name-only HEAD`
 - **Plan**: `{{TARGET}}` if path under `docs/1-plans/`, else "no plan — unplanned change"
 - **Findings**: every finding from all rounds with `file:line` and disposition
